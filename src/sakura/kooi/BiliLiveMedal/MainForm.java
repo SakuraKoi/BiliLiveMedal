@@ -83,8 +83,8 @@ public class MainForm extends JFrame {
                 }
 
                 RoomRankEntity roomRankEntity = API.roomRank(room, streamerUid);
-                MedalEntity medalEntity = API.liveMedals(joinUidList(roomRankEntity.getData().getList(), uid));
                 if (!roomRankEntity.getData().getList().isEmpty()) {
+                    MedalEntity medalEntity = API.liveMedals(joinUidList(roomRankEntity.getData().getList(), uid));
                     new RoomRankDialog(room, uid, selfName, roomRankEntity, medalEntity).setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "所查询的直播间没有任何人拥有粉丝勋章", "你有问题.jpg", JOptionPane.ERROR_MESSAGE);
