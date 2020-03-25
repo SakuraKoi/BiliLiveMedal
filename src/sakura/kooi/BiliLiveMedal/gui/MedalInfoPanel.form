@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sakura.kooi.BiliLiveMedal.gui.MedalInfoPanel">
+  <grid id="27dc6" binding="contentPane" layout-manager="FlowLayout" hgap="5" vgap="2" flow-align="3">
+    <constraints>
+      <xy x="20" y="20" width="572" height="124"/>
+    </constraints>
+    <properties/>
+    <border type="none">
+      <size top="4" left="4" bottom="4" right="4"/>
+    </border>
+    <children>
+      <nested-form id="ec7e2" form-file="sakura/kooi/BiliLiveMedal/gui/MedalLogoPanel.form" binding="medalLogo" custom-create="true">
+        <constraints/>
+      </nested-form>
+      <component id="14cbd" class="javax.swing.JLabel" binding="textStreamer">
+        <constraints/>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="ad4aa" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <foreground color="-6513508"/>
+          <text value=" 亲密度"/>
+        </properties>
+      </component>
+      <component id="43dc1" class="javax.swing.JLabel" binding="textCurrent">
+        <constraints/>
+        <properties>
+          <foreground color="-6381922"/>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="1b550" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <foreground color="-6381922"/>
+          <text value="["/>
+        </properties>
+      </component>
+      <component id="477df" class="javax.swing.JLabel" binding="textToday">
+        <constraints/>
+        <properties>
+          <foreground color="-6513508"/>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="e5a0e" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <foreground color="-6381922"/>
+          <text value="/"/>
+        </properties>
+      </component>
+      <component id="474b6" class="javax.swing.JLabel" binding="textMax">
+        <constraints/>
+        <properties>
+          <foreground color="-6513508"/>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="87bab" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <foreground color="-6381922"/>
+          <text value="]"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sakura.kooi.BiliLiveMedal.gui.RankPanel">
+  <grid id="27dc6" binding="contentPane" layout-manager="FlowLayout" hgap="5" vgap="2" flow-align="3">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="8be2" class="javax.swing.JLabel" binding="textRank">
+        <constraints/>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="8946b" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <text value=" "/>
+        </properties>
+      </component>
+      <nested-form id="e1b2b" form-file="sakura/kooi/BiliLiveMedal/gui/MedalLogoPanel.form" binding="medalLogo" custom-create="true">
+        <constraints/>
+      </nested-form>
+      <component id="a22b0" class="javax.swing.JLabel" binding="textGuard">
+        <constraints/>
+        <properties>
+          <font style="1"/>
+          <foreground color="-65536"/>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="4196" class="javax.swing.JLabel" binding="textName">
+        <constraints/>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="71d9c" class="javax.swing.JLabel" binding="textPoint">
+        <constraints/>
+        <properties>
+          <foreground color="-6513508"/>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="e9d2a" class="javax.swing.JLabel" binding="textCompare">
+        <constraints/>
+        <properties>
+          <foreground color="-16740880"/>
+          <text value="Label"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
