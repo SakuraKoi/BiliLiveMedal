@@ -23,7 +23,7 @@ public class RoomRankDialog extends JDialog {
 
         List<RoomRankEntity.DataBean.MedalBean> roomRankList = roomRankEntity.getData().getList();
         boolean onRank = false;
-        long streamerUid = roomRankEntity.getData().getList().get(0).getTargetId();
+        long streamerUid = roomRankList.get(0).getTargetId();
         MedalEntity.DataBean.UserBean.MedalBean selfBean = uid == -1 ? null : medalEntity.getData().getUsers().get(String.valueOf(uid)).getMedals().get(String.valueOf(streamerUid));
         for (int i = 0, size = roomRankList.size(); i<size; i++) {
             RoomRankEntity.DataBean.MedalBean roomRank = roomRankList.get(i);
