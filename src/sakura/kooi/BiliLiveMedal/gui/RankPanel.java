@@ -58,8 +58,20 @@ public class RankPanel extends JPanel {
         if (selfBean == null) return "";
         if (selfBean.getUid() == pointBean.getUid()) return "<-- 我自己";
         if (selfBean.getLevel() != pointBean.getLevel()) {
-            return "还差 " + Math.abs(pointBean.getLevel() - selfBean.getLevel()) + " 级 " + Math.abs(pointBean.getNextIntimacy() - pointBean.getIntimacy()) + " 亲密度";
+            boolean oneLevel = Math.abs(selfBean.getLevel() - pointBean.getLevel()) == 1;
+            if (selfBean.getLevel() > pointBean.getLevel()) {
+                return getCrossLevelDiff(pointBean, selfBean, oneLevel);
+            } else {
+                return getCrossLevelDiff(selfBean, pointBean, oneLevel);
+            }
         } else return "还差 " + Math.abs(pointBean.getIntimacy() - selfBean.getIntimacy()) + " 亲密度";
+    }
+
+    private String getCrossLevelDiff(MedalEntity.DataBean.UserBean.MedalBean lower, MedalEntity.DataBean.UserBean.MedalBean greater, boolean oneLevel) {
+        int nextLevelRequire = lower.getNextIntimacy() - lower.getIntimacy();
+        if (oneLevel) {
+            return "还差 1 级 (" + (nextLevelRequire + greater.getIntimacy()) + " 亲密度)";
+        } else return "还差 " + (greater.getLevel() - lower.getLevel() - 1) + " 级 " + (nextLevelRequire + greater.getIntimacy()) + " 亲密度";
     }
 
     private String toGuardLevelString(int guardLevel) {
