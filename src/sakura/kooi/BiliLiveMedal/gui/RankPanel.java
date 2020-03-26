@@ -58,7 +58,7 @@ public class RankPanel extends JPanel {
         if (selfBean == null) return "";
         if (selfBean.getUid() == pointBean.getUid()) return "<-- 我自己";
         if (selfBean.getLevel() != pointBean.getLevel()) {
-            return "还差 " + Math.abs(pointBean.getLevel() - selfBean.getLevel()) + " 级 " + Math.abs(selfBean.getNextIntimacy() - selfBean.getIntimacy()) + " 亲密度";
+            return "还差 " + Math.abs(pointBean.getLevel() - selfBean.getLevel()) + " 级 " + Math.abs(pointBean.getNextIntimacy() - pointBean.getIntimacy()) + " 亲密度";
         } else return "还差 " + Math.abs(pointBean.getIntimacy() - selfBean.getIntimacy()) + " 亲密度";
     }
 
