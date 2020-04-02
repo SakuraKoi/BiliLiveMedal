@@ -2,14 +2,14 @@ package sakura.kooi.BiliLiveMedal;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
-import sakura.kooi.BiliLiveMedal.entity.MedalEntity;
-import sakura.kooi.BiliLiveMedal.entity.RoomInfoEntity;
-import sakura.kooi.BiliLiveMedal.entity.RoomRankEntity;
-import sakura.kooi.BiliLiveMedal.entity.UserInfoEntity;
+import sakura.kooi.BiliLiveMedal.entity.*;
 
 import java.util.List;
 
 public class API {
+    static {
+        Runtime.getRuntime().addShutdownHook(new Thread((Unirest::shutDown)));
+    }
     public static RoomInfoEntity roomInfo(long room) {
         String url = "https://api.live.bilibili.com/room/v1/Room/get_info?id="+room;
         HttpResponse<String> response = Unirest.get(url).asString();
@@ -57,5 +57,15 @@ public class API {
             sb.append("uids[").append(i).append("]=").append(list.get(i)).append('&');
         }
         return sb.toString();
+    }
+
+    public static UserFollowEntity getFollowing(long uid, int page) {
+        String url = "https://api.bilibili.com/x/relation/followings?vmid="+uid+"&pn="+page+"&ps=50&order=desc&jsonp=jsonp";
+        HttpResponse<String> response = Unirest.get(url).asString();
+        if (response.getStatus() == 200) {
+            UserFollowEntity followEntity = Constants.getGson().fromJson(response.getBody(), UserFollowEntity.class);
+            if (followEntity.code != 0) throw new BiliException(followEntity.code+" "+followEntity.message);
+            return followEntity;
+        } else throw new BiliException("Bilibili服务器返回 HTTP错误码 "+response.getStatus());
     }
 }

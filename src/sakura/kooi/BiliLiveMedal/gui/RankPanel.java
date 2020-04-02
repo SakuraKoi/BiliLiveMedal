@@ -17,8 +17,8 @@ public class RankPanel extends JPanel {
     private JLabel textRank;
     private MedalEntity.DataBean.UserBean.MedalBean medalBean;
 
-    public RankPanel(String rank, @Nullable RoomRankEntity.DataBean.MedalBean medalBean, MedalEntity.DataBean.UserBean.MedalBean pointBean, @Nullable MedalEntity.DataBean.UserBean.MedalBean selfBean, String selfName) {
-        this.medalBean = pointBean;
+    public RankPanel(String rank, @Nullable RoomRankEntity.DataBean.MedalBean rankBean, MedalEntity.DataBean.UserBean.MedalBean medalBean, @Nullable MedalEntity.DataBean.UserBean.MedalBean selfBean, String selfName) {
+        this.medalBean = medalBean;
         this.add(contentPane);
         this.setLayout(new FlowLayout(FlowLayout.LEADING));
         textRank.setText(rank);
@@ -27,12 +27,12 @@ public class RankPanel extends JPanel {
         textRank.setMinimumSize(new Dimension(24, 12));
         textRank.setSize(new Dimension(24, 12));
 
-        textName.setText(medalBean == null ? selfName : medalBean.getUname());
-        textPoint.setText(String.valueOf(pointBean.getIntimacy()));
-        textGuard.setText(toGuardLevelString(pointBean.getGuardType()));
-        textCompare.setText(selfBean == null ? "" : compareWithPrevious(pointBean, selfBean));
+        textName.setText(rankBean == null ? selfName : rankBean.getUname());
+        textPoint.setText(String.valueOf(medalBean.getIntimacy()));
+        textGuard.setText(toGuardLevelString(medalBean.getGuardType()));
+        textCompare.setText(selfBean == null ? "" : compareWithPrevious(medalBean, selfBean));
         if (selfBean != null)
-            textCompare.setForeground(compareColor(pointBean, selfBean));
+            textCompare.setForeground(compareColor(medalBean, selfBean));
     }
 
     private Color compareColor(MedalEntity.DataBean.UserBean.MedalBean pointBean, MedalEntity.DataBean.UserBean.MedalBean selfBean) {

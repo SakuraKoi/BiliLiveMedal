@@ -2,6 +2,7 @@ package sakura.kooi.BiliLiveMedal;
 
 import sakura.kooi.BiliLiveMedal.entity.MedalEntity;
 import sakura.kooi.BiliLiveMedal.entity.RoomRankEntity;
+import sakura.kooi.BiliLiveMedal.entity.UserFollowEntity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +23,8 @@ public class MainForm extends JFrame {
     private JTextField textSelfUID;
     private JLabel lblAuthor;
     private JLabel lblVersion;
+    private JTextField textFollowUID;
+    private JButton btnFollows;
 
     public MainForm() {
         this.setContentPane(contentPane);
@@ -106,6 +109,25 @@ public class MainForm extends JFrame {
                 }
             }
         });
+        btnFollows.addActionListener(e -> {
+            if (textFollowUID.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "请输入正确的用户UID", "参数错误", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            long uid;
+            try {
+                uid = Long.valueOf(textFollowUID.getText().trim());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "请输入正确的用户UID", "参数错误", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            try {
+                UserFollowEntity followEntity = API.getFollowing(uid, 1);
+                new UserFollowDialog(followEntity, uid).setVisible(true);
+            } catch (BiliException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "查询失败", JOptionPane.ERROR_MESSAGE);
+            }
+        });
     }
 
     private List<Long> joinUidList(List<RoomRankEntity.DataBean.MedalBean> list, long uid) {
@@ -117,5 +139,11 @@ public class MainForm extends JFrame {
             set.add(uid);
         }
         return new ArrayList<>(set);
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        System.exit(0);
     }
 }
