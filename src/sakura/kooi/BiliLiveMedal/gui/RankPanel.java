@@ -15,6 +15,7 @@ public class RankPanel extends JPanel {
     private JLabel textGuard;
     private JLabel textCompare;
     private JLabel textRank;
+    private JLabel textToday;
     private MedalEntity.DataBean.UserBean.MedalBean medalBean;
 
     public RankPanel(String rank, @Nullable RoomRankEntity.DataBean.MedalBean rankBean, MedalEntity.DataBean.UserBean.MedalBean medalBean, @Nullable MedalEntity.DataBean.UserBean.MedalBean selfBean, String selfName) {
@@ -26,9 +27,13 @@ public class RankPanel extends JPanel {
         textRank.setMaximumSize(new Dimension(24, 12));
         textRank.setMinimumSize(new Dimension(24, 12));
         textRank.setSize(new Dimension(24, 12));
-
         textName.setText(rankBean == null ? selfName : rankBean.getUname());
         textPoint.setText(String.valueOf(medalBean.getIntimacy()));
+        if (medalBean.getTodayIntimacy() == medalBean.getDayLimit()) {
+            textToday.setText("今日已满");
+        } else {
+            textToday.setText("[ 辣条 +"+(medalBean.getDayLimit() - medalBean.getTodayIntimacy())+" ]");
+        }
         textGuard.setText(toGuardLevelString(medalBean.getGuardType()));
         textCompare.setText(selfBean == null ? "" : compareWithPrevious(medalBean, selfBean));
         if (selfBean != null)

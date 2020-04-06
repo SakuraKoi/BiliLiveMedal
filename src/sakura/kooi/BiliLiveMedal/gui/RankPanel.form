@@ -43,6 +43,13 @@
           <text value="Label"/>
         </properties>
       </component>
+      <component id="8be4f" class="javax.swing.JLabel" binding="textToday">
+        <constraints/>
+        <properties>
+          <foreground color="-8875876"/>
+          <text value="Label"/>
+        </properties>
+      </component>
       <component id="e9d2a" class="javax.swing.JLabel" binding="textCompare">
         <constraints/>
         <properties>
