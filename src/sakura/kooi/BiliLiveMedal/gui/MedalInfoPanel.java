@@ -12,16 +12,20 @@ public class MedalInfoPanel extends JPanel {
     private JLabel textCurrent;
     private JLabel textToday;
     private JLabel textMax;
+    private JLabel textGetTime;
+    private JLabel textChannel;
     private MedalEntity.DataBean.UserBean.MedalBean medalBean;
 
     public MedalInfoPanel(MedalEntity.DataBean.UserBean.MedalBean medalBean) {
         this.medalBean = medalBean;
         this.add(contentPane);
         this.setLayout(new FlowLayout(FlowLayout.LEADING));
+        textGetTime.setText(medalBean.getReceiveTime());
         textStreamer.setText(medalBean.getTargetName());
         textCurrent.setText(String.valueOf(medalBean.getIntimacy()));
         textToday.setText(String.valueOf(medalBean.getTodayIntimacy()));
         textMax.setText(String.valueOf(medalBean.getDayLimit()));
+        textChannel.setText(medalBean.getReceiveChannel()==1 ? "B克拉" : "瓜子/投币");
     }
 
     private void createUIComponents() {

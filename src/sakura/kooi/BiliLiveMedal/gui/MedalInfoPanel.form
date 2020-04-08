@@ -9,6 +9,18 @@
       <size top="4" left="4" bottom="4" right="4"/>
     </border>
     <children>
+      <component id="d248f" class="javax.swing.JLabel" binding="textGetTime">
+        <constraints/>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="bc57b" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <text value=" "/>
+        </properties>
+      </component>
       <nested-form id="ec7e2" form-file="sakura/kooi/BiliLiveMedal/gui/MedalLogoPanel.form" binding="medalLogo" custom-create="true">
         <constraints/>
       </nested-form>
@@ -65,6 +77,12 @@
         <properties>
           <foreground color="-6381922"/>
           <text value="]"/>
+        </properties>
+      </component>
+      <component id="73efb" class="javax.swing.JLabel" binding="textChannel">
+        <constraints/>
+        <properties>
+          <text value="Label"/>
         </properties>
       </component>
     </children>
