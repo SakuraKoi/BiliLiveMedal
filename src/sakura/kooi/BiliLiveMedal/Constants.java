@@ -8,7 +8,7 @@ import sakura.kooi.BiliLiveMedal.deserializers.MedalUserBeanAdapter;
 import sakura.kooi.BiliLiveMedal.entity.MedalEntity;
 
 public class Constants {
-    public static final String VERSION = "ALPHA-1.10-9ee99e0";
+    public static final String VERSION = "ALPHA-1.11-fc701ef";
 
     @Getter
     private static Gson gson = new GsonBuilder()

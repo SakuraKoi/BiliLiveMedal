@@ -24,6 +24,14 @@
       <nested-form id="ec7e2" form-file="sakura/kooi/BiliLiveMedal/gui/MedalLogoPanel.form" binding="medalLogo" custom-create="true">
         <constraints/>
       </nested-form>
+      <component id="12403" class="javax.swing.JLabel" binding="textGuard">
+        <constraints/>
+        <properties>
+          <font style="1"/>
+          <foreground color="-65536"/>
+          <text value="Label"/>
+        </properties>
+      </component>
       <component id="14cbd" class="javax.swing.JLabel" binding="textStreamer">
         <constraints/>
         <properties>

@@ -14,6 +14,7 @@ public class MedalInfoPanel extends JPanel {
     private JLabel textMax;
     private JLabel textGetTime;
     private JLabel textChannel;
+    private JLabel textGuard;
     private MedalEntity.DataBean.UserBean.MedalBean medalBean;
 
     public MedalInfoPanel(MedalEntity.DataBean.UserBean.MedalBean medalBean) {
@@ -25,7 +26,17 @@ public class MedalInfoPanel extends JPanel {
         textCurrent.setText(String.valueOf(medalBean.getIntimacy()));
         textToday.setText(String.valueOf(medalBean.getTodayIntimacy()));
         textMax.setText(String.valueOf(medalBean.getDayLimit()));
+        textGuard.setText(toGuardLevelString(medalBean.getGuardType()));
         textChannel.setText(medalBean.getReceiveChannel()==1 ? "B克拉" : "瓜子/投币");
+    }
+
+
+    private String toGuardLevelString(int guardLevel) {
+        if (guardLevel == 0) return "";
+        if (guardLevel == 1) return "总督";
+        if (guardLevel == 2) return "提督";
+        if (guardLevel == 3) return "舰长";
+        return "未知";
     }
 
     private void createUIComponents() {
