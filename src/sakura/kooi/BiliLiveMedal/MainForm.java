@@ -23,6 +23,7 @@ public class MainForm extends JFrame {
     private JLabel lblVersion;
     private JTextField textFollowUID;
     private JButton btnFollows;
+    private JCheckBox checkUseMobileAPI;
 
     public MainForm() {
         this.setContentPane(contentPane);
@@ -83,12 +84,17 @@ public class MainForm extends JFrame {
                     }
                 }
 
-                RoomRankEntity roomRankEntity = API.roomRank(room, streamerUid, 1);
-                RoomRankEntity roomRankEntity2 = API.roomRank(room, streamerUid, 2);
                 ArrayList<RoomRankEntity.DataBean.MedalBean> ranks = new ArrayList<>();
-                ranks.addAll(roomRankEntity.getData().getList());
-                ranks.addAll(roomRankEntity2.getData().getList());
-                if (!roomRankEntity.getData().getList().isEmpty()) {
+                if (checkUseMobileAPI.isSelected()) {
+                    RoomRankEntity roomRankEntity = API.roomRankMobile(room, streamerUid, 1);
+                    RoomRankEntity roomRankEntity2 = API.roomRankMobile(room, streamerUid, 2);
+                    ranks.addAll(roomRankEntity.getData().getList());
+                    ranks.addAll(roomRankEntity2.getData().getList());
+                } else {
+                    RoomRankEntity roomRankEntity = API.roomRankWeb(room, streamerUid);
+                    ranks.addAll(roomRankEntity.getData().getList());
+                }
+                if (!ranks.isEmpty()) {
                    Map<String, MedalEntity.DataBean.UserBean.MedalBean> medals = new HashMap<>();
                     ArrayList<Long> uidList = new ArrayList<>();
                     if (uid != -1) uidList.add(uid);
