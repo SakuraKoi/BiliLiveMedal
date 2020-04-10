@@ -29,8 +29,8 @@ public class API {
         } else throw new BiliException("Bilibili服务器返回 HTTP错误码 "+response.getStatus());
     }
 
-    public static RoomRankEntity roomRank(long room, long streamerUid) {
-        String url = "https://api.live.bilibili.com/rankdb/v1/RoomRank/webMedalRank?roomid=" + room + "&ruid=" + streamerUid;
+    public static RoomRankEntity roomRank(long room, long streamerUid, int page) {
+        String url = "https://api.live.bilibili.com/rankdb/v2/RoomRank/mobileMedalRank?roomid=" + room + "&ruid=" + streamerUid + "&page=" + page;
         HttpResponse<String> response = Unirest.get(url).asString();
         if (response.getStatus() == 200) {
             RoomRankEntity roomRankEntity = Constants.getGson().fromJson(response.getBody(), RoomRankEntity.class);

@@ -9,10 +9,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
+import java.util.*;
 
 public class MainForm extends JFrame {
     private JPanel contentPane;
@@ -85,10 +83,26 @@ public class MainForm extends JFrame {
                     }
                 }
 
-                RoomRankEntity roomRankEntity = API.roomRank(room, streamerUid);
+                RoomRankEntity roomRankEntity = API.roomRank(room, streamerUid, 1);
+                RoomRankEntity roomRankEntity2 = API.roomRank(room, streamerUid, 2);
+                ArrayList<RoomRankEntity.DataBean.MedalBean> ranks = new ArrayList<>();
+                ranks.addAll(roomRankEntity.getData().getList());
+                ranks.addAll(roomRankEntity2.getData().getList());
                 if (!roomRankEntity.getData().getList().isEmpty()) {
-                    MedalEntity medalEntity = API.liveMedals(joinUidList(roomRankEntity.getData().getList(), uid));
-                    new RoomRankDialog(room, uid, selfName, roomRankEntity, medalEntity).setVisible(true);
+                   Map<String, MedalEntity.DataBean.UserBean.MedalBean> medals = new HashMap<>();
+                    ArrayList<Long> uidList = new ArrayList<>();
+                    if (uid != -1) uidList.add(uid);
+                    LinkedList<RoomRankEntity.DataBean.MedalBean> uids = new LinkedList<>(ranks);
+                    while(!uids.isEmpty()) {
+                        uidList.clear();;
+                        while (uidList.size() < 10) {
+                            if (uids.isEmpty()) break;
+                            uidList.add((long) uids.pop().getUid());
+                        }
+                        MedalEntity medalEntity = API.liveMedals(uidList);
+                        medalEntity.getData().getUsers().entrySet().stream().forEach(entry -> medals.put(entry.getKey(), entry.getValue().getMedals().get(String.valueOf(streamerUid))));
+                    }
+                    new RoomRankDialog(room, uid, selfName, ranks, medals).setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "所查询的直播间没有任何人拥有粉丝勋章", "你有问题.jpg", JOptionPane.ERROR_MESSAGE);
                 }
