@@ -100,13 +100,13 @@ public class MainForm extends JFrame {
                     if (uid != -1) uidList.add(uid);
                     LinkedList<RoomRankEntity.DataBean.MedalBean> uids = new LinkedList<>(ranks);
                     while(!uids.isEmpty()) {
-                        uidList.clear();;
                         while (uidList.size() < 10) {
                             if (uids.isEmpty()) break;
                             uidList.add((long) uids.pop().getUid());
                         }
                         MedalEntity medalEntity = API.liveMedals(uidList);
                         medalEntity.getData().getUsers().entrySet().stream().forEach(entry -> medals.put(entry.getKey(), entry.getValue().getMedals().get(String.valueOf(streamerUid))));
+                        uidList.clear();
                     }
                     new RoomRankDialog(room, uid, selfName, ranks, medals).setVisible(true);
                 } else {
